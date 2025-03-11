@@ -41,6 +41,61 @@ public class GameOverPanelTests {
 
         assertEquals(lastRecord[1], "5");
     }
+
+    @Test
+    public void testGetCorrectValue(){
+        // Create GameOverPanel
+        GameOverPanel gameOverPanel = new GameOverPanel(new JPanel());
+
+        // Create GameResult
+        GameResult result = new GameResult(true, 1, 5);
+
+        assertEquals("The answer was 1.", gameOverPanel.getCorrectValue(result));
+    }
+
+    @Test
+    public void testGetNumGuessesOneTrue(){
+        // Create GameOverPanel
+        GameOverPanel gameOverPanel = new GameOverPanel(new JPanel());
+
+        // Create GameResult
+        GameResult result = new GameResult(true, 1, 1);
+
+        assertEquals("You guessed it on the first try!", gameOverPanel.getNumGuesses(result));
+    }
+
+    @Test
+    public void testGetNumGuessesOneFalse(){
+        // Create GameOverPanel
+        GameOverPanel gameOverPanel = new GameOverPanel(new JPanel());
+
+        // Create GameResult
+        GameResult result = new GameResult(false, 1, 1);
+
+        assertEquals("I guessed it on the first try!", gameOverPanel.getNumGuesses(result));
+    }
+
+    @Test
+    public void testGetNumGuessesMoreThanOneTrue(){
+        // Create GameOverPanel
+        GameOverPanel gameOverPanel = new GameOverPanel(new JPanel());
+
+        // Create GameResult
+        GameResult result = new GameResult(true, 1, 5);
+
+        assertEquals("It took you 5 guesses.", gameOverPanel.getNumGuesses(result));
+    }
+
+    @Test
+    public void testGetNumGuessesMoreThanOneFalse(){
+        // Create GameOverPanel
+        GameOverPanel gameOverPanel = new GameOverPanel(new JPanel());
+
+        // Create GameResult
+        GameResult result = new GameResult(false, 1, 5);
+
+        assertEquals("It took me 5 guesses.", gameOverPanel.getNumGuesses(result));
+    }
 }
 
 // Test double for CSVWriter

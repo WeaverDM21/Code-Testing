@@ -103,11 +103,11 @@ public class GameOverPanel extends JPanel {
         }
     }
 
-    private String getCorrectValue(GameResult result){
+    public String getCorrectValue(GameResult result){
         return "The answer was " + result.correctValue + ".";
     }
 
-    private String getNumGuesses(GameResult result){
+    public String getNumGuesses(GameResult result){
         if(result.numGuesses == 1){
             return (result.humanWasPlaying ? "You" : "I") + " guessed it on the first try!";
         }
