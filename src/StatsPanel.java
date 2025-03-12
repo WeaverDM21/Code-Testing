@@ -36,27 +36,8 @@ public class StatsPanel extends JPanel {
         resultsPanel.setLayout(new GridLayout(0, 2));
         resultsPanel.add(new JLabel("Guesses"));
         resultsPanel.add(new JLabel("Games"));
-        for(int binIndex=0; binIndex<BIN_EDGES.length; binIndex++){
-            String binName;
-            if(binIndex == BIN_EDGES.length-1){
-                // last bin
-                binName = BIN_EDGES[binIndex] + " or more";
-            }
-            else{
-                int upperBound = BIN_EDGES[binIndex+1] - 1;
-                if(upperBound > BIN_EDGES[binIndex]){
-                    binName = BIN_EDGES[binIndex] + "-" + upperBound;
-                }
-                else{
-                    binName = Integer.toString(BIN_EDGES[binIndex]);
-                }
-            }
 
-            resultsPanel.add(new JLabel(binName));
-            JLabel result = new JLabel("--");
-            resultsLabels.add(result);
-            resultsPanel.add(result);
-        }
+        setBins(resultsLabels, resultsPanel);
 
         resultsPanel.setMinimumSize(new Dimension(120, 120));
         this.add(resultsPanel);
@@ -83,6 +64,30 @@ public class StatsPanel extends JPanel {
         });
     }
 
+    private void setBins(ArrayList<JLabel> resultsLabels, JPanel resultsPanel){
+        for(int binIndex=0; binIndex<BIN_EDGES.length; binIndex++){
+            String binName = getBinName(binIndex);
+
+            resultsPanel.add(new JLabel(binName));
+            JLabel result = new JLabel("--");
+            resultsLabels.add(result);
+            resultsPanel.add(result);
+        }
+    }
+
+    private String getBinName(int binIndex){
+        // last bin
+        if(binIndex == BIN_EDGES.length-1){
+            return BIN_EDGES[binIndex] + " or more";
+        }
+
+        int upperBound = BIN_EDGES[binIndex+1] - 1;
+        if(upperBound > BIN_EDGES[binIndex]){
+            return BIN_EDGES[binIndex] + "-" + upperBound;
+        }
+
+        return Integer.toString(BIN_EDGES[binIndex]);
+    }
 
     private void clearResults(){
         for(JLabel lbl : resultsLabels){
