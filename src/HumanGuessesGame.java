@@ -21,6 +21,14 @@ public class HumanGuessesGame {
         gameIsDone = false;
     }
 
+    HumanGuessesGame(int target){
+        Random randGen = new Random();
+        this.target = target;
+
+        numGuesses = 0;
+        gameIsDone = false;
+    }
+
     GuessResult makeGuess(int value){
         numGuesses += 1;
 

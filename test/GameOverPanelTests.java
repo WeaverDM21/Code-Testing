@@ -11,10 +11,11 @@ public class GameOverPanelTests {
 
     @Test
     public void testWriteToFile() {
+        // Uses dependency injection
         // Create GameResult
         GameResult result = new GameResult(true, 1, 5);
 
-        // Create MockCSVWriter
+        // Create MockCSVWriter (Dependency Injection)
         MockCSVWriter mockCsvWriter = new MockCSVWriter();
 
         // Create GameOverPanel
@@ -23,7 +24,7 @@ public class GameOverPanelTests {
         LocalDateTime startTime = LocalDateTime.now();// Start Time
 
         // Call UUT
-        gameOverPanel.setGameResults(result, mockCsvWriter);
+        gameOverPanel.gameResultsToFile(result, mockCsvWriter);
 
         LocalDateTime endTime = LocalDateTime.now(); // End Time
 
