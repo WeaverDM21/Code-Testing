@@ -69,7 +69,7 @@ public class GameOverPanel extends JPanel {
      * Sets the game results, updates the UI, and saves results to the log file (if human was playing)
      */
     // TODO: refactor this method
-    public void setGameResults(GameResult result) {
+    public void gameResultsToScreen(GameResult result) {
         this.gameResult = result;
 
         String answer = getCorrectValue(result);
@@ -77,7 +77,9 @@ public class GameOverPanel extends JPanel {
 
         String numGuesses = getNumGuesses(result);
         numGuessesTxt.setText(numGuesses);
+    }
 
+    public void gameResultsToFile(GameResult result){
         if(result.humanWasPlaying){
             try {
                 FileWriter fileWriter = new FileWriter(StatsFile.FILENAME, true);

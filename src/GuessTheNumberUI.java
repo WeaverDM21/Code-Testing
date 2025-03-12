@@ -70,14 +70,11 @@ public class GuessTheNumberUI {
         // TODO: your refactoring should include some changes to the lambda expression in the following line
         // HINT: Look at what GameOverPanel.setGameResults does now. Your code should do the same operations,
         //       but refactor how those are structured, which means the lambda will need to change.
-        //Old line: JPanel humanGuessesPanel = new HumanGuessesPanel(cardsPanel, gameResult -> {gameOverPanel.setGameResults(gameResult);});
         JPanel humanGuessesPanel = new HumanGuessesPanel(cardsPanel, gameResult -> {
-            try (CSVWriter writer = new CSVWriter(new FileWriter(StatsFile.FILENAME, true))) {
-                gameOverPanel.setGameResults(gameResult, writer);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            gameOverPanel.gameResultsToScreen(gameResult);
+            gameOverPanel.gameResultsToFile(gameResult);
         });
+
         addToCards(cardsPanel, humanGuessesPanel, ScreenID.HUMAN_PLAY.name());
 
         // COMPUTER_PLAY_LAUNCH
@@ -85,7 +82,9 @@ public class GuessTheNumberUI {
         addToCards(cardsPanel, computerPlayLaunchPanel, ScreenID.COMPUTER_PLAY_LAUNCH.name());
 
         // COMPUTER_PLAY
-        JPanel computerGuessesPanel = new ComputerGuessesPanel(cardsPanel, gameResult -> {gameOverPanel.setGameResults(gameResult);});
+        JPanel computerGuessesPanel = new ComputerGuessesPanel(cardsPanel, gameResult -> {
+            gameOverPanel.gameResultsToScreen(gameResult);
+        });
         addToCards(cardsPanel, computerGuessesPanel, ScreenID.COMPUTER_PLAY.name());
 
         // STATS
