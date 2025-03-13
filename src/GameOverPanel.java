@@ -97,21 +97,6 @@ public class GameOverPanel extends JPanel {
         }
     }
 
-    // No longer need but left here just in case
-//    public void setGameResults(GameResult result, CSVWriter writer) {
-//        this.gameResult = result;
-//
-//        String answer = getCorrectValue(result);
-//        answerTxt.setText(answer);
-//
-//        String numGuesses = getNumGuesses(result);
-//        numGuessesTxt.setText(numGuesses);
-//
-//        if(result.humanWasPlaying){
-//            writeToFile(result, writer);
-//        }
-//    }
-
     public String getCorrectValue(GameResult result){
         return "The answer was " + result.correctValue + ".";
     }
