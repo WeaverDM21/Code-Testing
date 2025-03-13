@@ -30,6 +30,11 @@ public class HumanGuessesGame {
     }
 
     GuessResult makeGuess(int value){
+        // Throws an exception if guess is out of bounds
+        if (value > UPPER_BOUND || value <= 0){
+            throw new IllegalArgumentException("Value must be between 1 and " + UPPER_BOUND + " (inclusive).");
+        }
+
         numGuesses += 1;
 
         if(value < target){

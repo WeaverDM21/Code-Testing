@@ -97,6 +97,7 @@ public class GameOverPanel extends JPanel {
         }
     }
 
+    // No longer need but left here just in case
 //    public void setGameResults(GameResult result, CSVWriter writer) {
 //        this.gameResult = result;
 //
