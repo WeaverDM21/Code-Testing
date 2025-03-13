@@ -24,6 +24,24 @@ public class HumanGuessesGameTests {
     }
 
     @Test
+    public void testMakeGuessAboveBound(){
+        HumanGuessesGame hgg = new HumanGuessesGame(10);
+        assertThrows(IllegalArgumentException.class, () -> hgg.makeGuess(1001));
+    }
+
+    @Test
+    public void testMakeGuessZero(){
+        HumanGuessesGame hgg = new HumanGuessesGame(10);
+        assertThrows(IllegalArgumentException.class, () -> hgg.makeGuess(0));
+    }
+
+    @Test
+    public void testMakeGuessNegative(){
+        HumanGuessesGame hgg = new HumanGuessesGame(10);
+        assertThrows(IllegalArgumentException.class, () -> hgg.makeGuess(-1));
+    }
+
+    @Test
     public void testGetNumGuessesZero(){
         HumanGuessesGame hgg = new HumanGuessesGame(10);
         assertEquals(0, hgg.getNumGuesses());
