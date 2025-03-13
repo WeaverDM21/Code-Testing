@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 import javax.swing.*;
 
 import java.util.ArrayList;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,7 +50,7 @@ public class StatsPanelTests {
             vals.add(i);
         }
 
-        GameStats stats = new StatsFile(vals);
+        GameStats stats = new MockStatsFile(vals);
 
         assertEquals(1, sp.getNumGames(stats, 1,0));
         assertEquals(5, sp.getNumGames(stats, 2,1));
@@ -59,4 +61,27 @@ public class StatsPanelTests {
         assertEquals(25, sp.getNumGames(stats, 12,6));
         assertEquals(29, sp.getNumGames(stats, 14,7));
     }
+
+
+    private class MockStatsFile extends GameStats{
+        private SortedMap<Integer, Integer> statsMap;
+        public MockStatsFile(ArrayList<Integer> vals){
+            // vals[0] is numgames for 1, vals[1] is numgames for 2-3, vals[3] is numgames for 4-5...
+            statsMap = new TreeMap<>();
+            for(int i = 0; i < vals.size(); i++){
+                statsMap.put(i+1,vals.get(i));
+            }
+        }
+        @Override
+        public int numGames(int numGuesses) {
+            return statsMap.getOrDefault(numGuesses, 0);
+        }
+
+        @Override
+        public int maxNumGuesses(){
+            return (statsMap.isEmpty() ? 0 : statsMap.lastKey());
+        }
+    }
 }
+
+

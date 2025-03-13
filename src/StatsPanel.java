@@ -112,10 +112,7 @@ public class StatsPanel extends JPanel {
         int numGames = 0;
         if(binIndex == BIN_EDGES.length-1){ // last bin
             // Sum all the results from lowerBound on up
-            System.out.println("LOWERBOUND = " + lowerBound + " BIN INDEX = " + binIndex);
-            System.out.println("MAX NUM GUESSES = " + stats.maxNumGuesses());
             for(int numGuesses=lowerBound; numGuesses<stats.maxNumGuesses(); numGuesses++){
-                System.out.println("NUM GUESSES: " + numGuesses + " numGames(numguesses): " + stats.numGames(numGuesses));
                 numGames += stats.numGames(numGuesses);
             }
             return numGames;

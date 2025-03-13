@@ -56,14 +56,6 @@ public class StatsFile extends GameStats {
         }
     }
 
-    public StatsFile(ArrayList<Integer> vals){
-        // vals[0] is numgames for 1, vals[1] is numgames for 2-3, vals[3] is numgames for 4-5...
-        statsMap = new TreeMap<>();
-        for(int i = 0; i < vals.size(); i++){
-            statsMap.put(i+1,vals.get(i));
-        }
-        System.out.println("STATS MAP HERE" + statsMap);
-    }
     @Override
     public int numGames(int numGuesses) {
         return statsMap.getOrDefault(numGuesses, 0);

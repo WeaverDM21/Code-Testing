@@ -76,12 +76,8 @@ public class ComputerGuessesPanel extends JPanel {
     }
 
     public void handleLastGuessLower(JLabel guessMessage){
-        System.out.println("Last Guess "+ lastGuess);
-        System.out.println("UB " + upperBound);
         upperBound = Math.min(upperBound, lastGuess);
         updateGuessText(guessMessage);
-        System.out.println("Last Guess "+ lastGuess);
-        System.out.println("UB " + upperBound);
     }
 
     private void updateGuessText(JLabel guessMessage){
